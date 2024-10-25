@@ -9,7 +9,7 @@ export const Header = () => {
                 <div className="row align-items-center">
                     {/* Logo on the left */}
                     <div className="col-12 col-md-3 text-center text-md-start">
-                        <img src={logo} className="img-fluid" alt="Logo" style={{ height: '200px' }} />
+                        <img src={logo} className="img-fluid" alt="Logo" style={{ height: '150px' }} />
                     </div>
                     
                     {/* Right section with ISO and company info */}

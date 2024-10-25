@@ -47,7 +47,7 @@ export const Form_2 = () => {
         win.setItem('cdob2', cdob2);
         win.setItem('cdob3', cdob3);
 
-        navigate('/form_3'); // Assuming you are navigating to form_3 on next
+        navigate('/passport'); // Assuming you are navigating to form_3 on next
     };
 
     // Load data from sessionStorage when component mounts
@@ -323,7 +323,7 @@ export const Form_2 = () => {
                             </div>
                             <div className="col-md-6">
                                 <div className="form-group">
-                                    <button type="submit" className="btn-submit" onClick={generatePDF}>
+                                    <button type="submit" className="btn-submit" >
                                         Next
                                     </button>
                                 </div>

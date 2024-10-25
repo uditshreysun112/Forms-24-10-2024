@@ -74,23 +74,23 @@ export const Index = () => {
     },[])  // Run once when component mounts
 
      // Function to generate PDF
-     const generatePDF = () => {
-        const doc = new jsPDF();
+    //  const generatePDF = () => {
+    //     const doc = new jsPDF();
 
-        doc.text("Registration Details", 10, 10);
-        doc.text(`Name: ${fname} ${lname}`, 10, 20);
-        doc.text(`Email: ${email}`, 10, 30);
-        doc.text(`Phone 1 Name: ${phone}`, 10, 50);
-        doc.text(`Phone 2: ${phone2}`, 10, 60);
-        doc.text(`Date Of Birth: ${dob}`, 10, 40);
-        doc.text(`Birth Place: ${place}`, 10, 70);
-        doc.text(`Bank Name and Branch: ${bankname}`, 10, 80);
-        doc.text(`Bank A/c No: ${bankan}`, 10, 90);
-        doc.text(`Nearest Airport: ${bankname}`, 10, 100);
+        // doc.text("Registration Details", 10, 10);
+        // doc.text(`Name: ${fname} ${lname}`, 10, 20);
+        // doc.text(`Email: ${email}`, 10, 30);
+        // doc.text(`Phone 1 Name: ${phone}`, 10, 50);
+        // doc.text(`Phone 2: ${phone2}`, 10, 60);
+        // doc.text(`Date Of Birth: ${dob}`, 10, 40);
+        // doc.text(`Birth Place: ${place}`, 10, 70);
+        // doc.text(`Bank Name and Branch: ${bankname}`, 10, 80);
+        // doc.text(`Bank A/c No: ${bankan}`, 10, 90);
+        // doc.text(`Nearest Airport: ${bankname}`, 10, 100);
 
         // Save the PDF
-        doc.save('form_data.pdf');
-    };
+    //     doc.save('form_data.pdf');
+    // };
 
 
     return (
