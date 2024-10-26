@@ -2,6 +2,8 @@ import './index.css'
 import { useNavigate } from 'react-router-dom';
 import { useState , useEffect } from 'react';
 import jsPDF from 'jspdf'; // Import jsPDF
+import logo from "./assets/logo_for_form.png";
+import html2pdf from 'html2pdf.js';
 
 export const Passport = () => {
     const navigate = useNavigate();
@@ -121,27 +123,61 @@ export const Passport = () => {
         
     },[])  // Run once when component mounts
 
-     // Function to generate PDF
+    //  Function to generate PDF
     //  const generatePDF = () => {
     //     const doc = new jsPDF();
 
-        // doc.text("Registration Details", 10, 10);
-        // doc.text(`Name: ${fname} ${lname}`, 10, 20);
-        // doc.text(`Email: ${email}`, 10, 30);
-        // doc.text(`Phone 1 Name: ${phone}`, 10, 50);
-        // doc.text(`Phone 2: ${phone2}`, 10, 60);
-        // doc.text(`Date Of Birth: ${dob}`, 10, 40);
-        // doc.text(`Birth Place: ${place}`, 10, 70);
-        // doc.text(`Bank Name and Branch: ${bankname}`, 10, 80);
-        // doc.text(`Bank A/c No: ${bankan}`, 10, 90);
-        // doc.text(`Nearest Airport: ${bankname}`, 10, 100);
+    //     doc.text("Registration Details", 10, 10);
+    //     doc.text(`Name: ${fname} ${lname}`, 10, 20);
+    //     doc.text(`Email: ${email}`, 10, 30);
+    //     doc.text(`Phone 1 Name: ${phone}`, 10, 50);
+    //     doc.text(`Phone 2: ${phone2}`, 10, 60);
+    //     doc.text(`Date Of Birth: ${dob}`, 10, 40);
+    //     doc.text(`Birth Place: ${place}`, 10, 70);
+    //     doc.text(`Bank Name and Branch: ${bankname}`, 10, 80);
+    //     doc.text(`Bank A/c No: ${bankan}`, 10, 90);
+    //     doc.text(`Nearest Airport: ${bankname}`, 10, 100);
 
-        // Save the PDF
+    //     Save the PDF
     //     doc.save('form_data.pdf');
     // };
 
+     // Function to generate PDF
+     const getContentInPDF = () => {
+        // Create a container with form data as table rows
+        const element = document.createElement('div');
+        element.innerHTML = `
+            <h1>Form Data</h1>
+            <img src="${logo}" alt="logo" style="width: 100px; height: auto; margin-bottom: 20px;">
+            <table class="pdf-table" style="width: 100%; border-collapse: collapse; border: 1px solid #000;">
+                <tr>
+                    <th style="padding: 8px; background-color: #f2f2f2; border: 1px solid #000;">Field</th>
+                    <th style="padding: 8px; background-color: #f2f2f2; border: 1px solid #000;">Value</th>
+                </tr>
+                <tr><td style="padding: 8px; border: 1px solid #000;">Number</td><td style="padding: 8px; border: 1px solid #000;">${passnumber}</td></tr>
+                <tr><td style="padding: 8px; border: 1px solid #000;">Issue place</td><td style="padding: 8px; border: 1px solid #000;">${passissueplace}</td></tr>
+                <tr><td style="padding: 8px; border: 1px solid #000;">Issue date</td><td style="padding: 8px; border: 1px solid #000;">${passissuedate}</td></tr>
+                <tr><td style="padding: 8px; border: 1px solid #000;">Expire date</td><td style="padding: 8px; border: 1px solid #000;">${passexpiredate}</td></tr>
+
+            </table>
+        `;
+
+        // Configure and generate the PDF with html2pdf
+        html2pdf()
+            .set({
+                margin: [10, 10, 10, 10], // top, right, bottom, left (in mm)
+                filename: 'Form_Data.pdf',
+                image: { type: 'jpeg', quality: 0.98 },
+                html2canvas: { scale: 2, useCORS: true },
+                jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
+            })
+            .from(element)
+            .save()
+            .catch(err => console.error("Error generating PDF:", err));
+    };
+
     const handlePreviousClick = () => {
-        navigate('/form_2');  // Navigate to the previous form (Form 1)
+        navigate('/form_2'); 
     };
 
 
@@ -169,7 +205,7 @@ export const Passport = () => {
                                     id="pass-number"
                                     name="pass-number"
                                     placeholder="number"
-                                    // value={passnumber} onChange={(e)=>setPassnumber(e.target.value)}
+                                    value={passnumber} onChange={(e)=>setPassnumber(e.target.value)}
                                     required
                                     />
                                     </div>
@@ -181,7 +217,7 @@ export const Passport = () => {
                                     id="pass-place"
                                     name="pass-place"
                                     placeholder="place of issue"
-                                    // value={passnumber} onChange={(e)=>setPassnumber(e.target.value)}
+                                    value={passissueplace} onChange={(e)=>setPassissueplace(e.target.value)}
                                     required
                                     />
                                     </div>
@@ -193,7 +229,7 @@ export const Passport = () => {
                                     id="pass-issue-date"
                                     name="pass-issue-date"
                                     placeholder="issue date"
-                                    // value={passnumber} onChange={(e)=>setPassnumber(e.target.value)}
+                                    value={passissuedate} onChange={(e)=>setPassissuedate(e.target.value)}
                                     required
                                     />
                                     </div>
@@ -205,7 +241,7 @@ export const Passport = () => {
                                     id="pass-expire-date"
                                     name="pass-expire-date"
                                     placeholder="expire date"
-                                    // value={passnumber} onChange={(e)=>setPassnumber(e.target.value)}
+                                    value={passexpiredate} onChange={(e)=>setPassexpiredate(e.target.value)}
                                     required
                                     />
                                     </div>
@@ -228,7 +264,7 @@ export const Passport = () => {
                                     id="visa-number"
                                     name="visa-number"
                                     placeholder="number"
-                                    // value={passnumber} onChange={(e)=>setPassnumber(e.target.value)}
+                                    value={visanumber} onChange={(e)=>setVisanumber(e.target.value)}
                                     required
                                     />
                                     </div>
@@ -240,7 +276,7 @@ export const Passport = () => {
                                     id="visa-place"
                                     name="visa-place"
                                     placeholder="place of issue"
-                                    // value={passnumber} onChange={(e)=>setPassnumber(e.target.value)}
+                                    value={visaissueplace} onChange={(e)=>setVisaissueplace(e.target.value)}
                                     required
                                     />
                                     </div>
@@ -252,7 +288,7 @@ export const Passport = () => {
                                     id="visa-issue-date"
                                     name="visa-issue-date"
                                     placeholder="issue date"
-                                    // value={passnumber} onChange={(e)=>setPassnumber(e.target.value)}
+                                    value={visaissuedate} onChange={(e)=>setVisaissuedate(e.target.value)}
                                     required
                                     />
                                     </div>
@@ -264,7 +300,7 @@ export const Passport = () => {
                                     id="visa-expire-date"
                                     name="visa-expire-date"
                                     placeholder="expire date"
-                                    // value={passnumber} onChange={(e)=>setPassnumber(e.target.value)}
+                                    value={visaexpiredate} onChange={(e)=>setVisaexpiredate(e.target.value)}
                                     required
                                     />
                                     </div>
@@ -287,7 +323,7 @@ export const Passport = () => {
                                     id="ecrn-number"
                                     name="ecrn-number"
                                     placeholder="number"
-                                    // value={passnumber} onChange={(e)=>setPassnumber(e.target.value)}
+                                    value={ecnrnumber} onChange={(e)=>setEcnrnumber(e.target.value)}
                                     required
                                     />
                                     </div>
@@ -299,7 +335,7 @@ export const Passport = () => {
                                     id="ecrn-place"
                                     name="ecrn-place"
                                     placeholder="place of issue"
-                                    // value={passnumber} onChange={(e)=>setPassnumber(e.target.value)}
+                                    value={ecnrissueplace} onChange={(e)=>setEcnrissueplace(e.target.value)}
                                     required
                                     />
                                     </div>
@@ -311,7 +347,7 @@ export const Passport = () => {
                                     id="ecrn-issue-date"
                                     name="ecrn-issue-date"
                                     placeholder="issue date"
-                                    // value={passnumber} onChange={(e)=>setPassnumber(e.target.value)}
+                                    value={ecnrissuedate} onChange={(e)=>setEcnrissuedate(e.target.value)}
                                     required
                                     />
                                     </div>
@@ -323,7 +359,7 @@ export const Passport = () => {
                                     id="ecrn-expire-date"
                                     name="ecrn-expire-date"
                                     placeholder="expire date"
-                                    // value={passnumber} onChange={(e)=>setPassnumber(e.target.value)}
+                                    value={ecnrexpiredate} onChange={(e)=>setEcnrexpiredate(e.target.value)}
                                     required
                                     />
                                     </div>
@@ -346,7 +382,7 @@ export const Passport = () => {
                                     id="yellow-number"
                                     name="yellow-number"
                                     placeholder="number"
-                                    // value={passnumber} onChange={(e)=>setPassnumber(e.target.value)}
+                                    value={yellowfevernumber} onChange={(e)=>setYellowfevernumber(e.target.value)}
                                     required
                                     />
                                     </div>
@@ -358,7 +394,7 @@ export const Passport = () => {
                                     id="yellow-place"
                                     name="yellow-place"
                                     placeholder="place of issue"
-                                    // value={passnumber} onChange={(e)=>setPassnumber(e.target.value)}
+                                    value={yellowfeverissueplace} onChange={(e)=>setYellowfeverissueplace(e.target.value)}
                                     required
                                     />
                                     </div>
@@ -370,7 +406,7 @@ export const Passport = () => {
                                     id="yellow-issue-date"
                                     name="yellow-issue-date"
                                     placeholder="issue date"
-                                    // value={passnumber} onChange={(e)=>setPassnumber(e.target.value)}
+                                    value={yellowfeverissuedate} onChange={(e)=>setYellowfeverissuedate(e.target.value)}
                                     required
                                     />
                                     </div>
@@ -382,7 +418,7 @@ export const Passport = () => {
                                     id="yellow-expire-date"
                                     name="yellow-expire-date"
                                     placeholder="expire date"
-                                    // value={passnumber} onChange={(e)=>setPassnumber(e.target.value)}
+                                    value={yellowfeverexpiredate} onChange={(e)=>setYellowfeverexpiredate(e.target.value)}
                                     required
                                     />
                                     </div>
@@ -393,7 +429,7 @@ export const Passport = () => {
                         <div className="form-group ">
                             <div className='text-start'>
                                 <label htmlFor="schooler-name">
-                    indosDOS:<span className="required ">*</span>
+                                    Indos:<span className="required ">*</span>
                                 </label>
                             </div>
                             <div className="name-field">
@@ -405,7 +441,7 @@ export const Passport = () => {
                                     id="indos-number"
                                     name="indos-number"
                                     placeholder="number"
-                                    // value={passnumber} onChange={(e)=>setPassnumber(e.target.value)}
+                                    value={indosnumber} onChange={(e)=>setIndosnumber(e.target.value)}
                                     required
                                     />
                                     </div>
@@ -417,7 +453,7 @@ export const Passport = () => {
                                     id="indos-place"
                                     name="indos-place"
                                     placeholder="place of issue"
-                                    // value={passnumber} onChange={(e)=>setPassnumber(e.target.value)}
+                                    value={indosissueplace} onChange={(e)=>setIndosissueplace(e.target.value)}
                                     required
                                     />
                                     </div>
@@ -429,7 +465,7 @@ export const Passport = () => {
                                     id="indos-issue-date"
                                     name="indos-issue-date"
                                     placeholder="issue date"
-                                    // value={passnumber} onChange={(e)=>setPassnumber(e.target.value)}
+                                    value={indosissuedate} onChange={(e)=>setIndosissuedate(e.target.value)}
                                     required
                                     />
                                     </div>
@@ -441,7 +477,7 @@ export const Passport = () => {
                                     id="indos-expire-date"
                                     name="indos-expire-date"
                                     placeholder="expire date"
-                                    // value={passnumber} onChange={(e)=>setPassnumber(e.target.value)}
+                                    value={indosexpiredate} onChange={(e)=>setIndosexpiredate(e.target.value)}
                                     required
                                     />
                                     </div>
@@ -462,14 +498,18 @@ export const Passport = () => {
                         <div className="form-group ">
                             <div className="row">
                                 <div className="col-md-6">
-                                    <button type="preview" className="btn-submit" onClick={handlePreviousClick}>
-                                        Preview
-                                    </button>
+                                    <div className="form-group">
+                                        <button type="button" className="btn-submit" onClick={handlePreviousClick}>
+                                            Previous
+                                        </button>
+                                    </div>
                                 </div>
                                 <div className="col-md-6">
-                                    <button type="next" className="btn-submit" >
-                                        Next
-                                    </button>
+                                    <div className="form-group">
+                                        <button type="submit" className="btn-submit" onClick={getContentInPDF}>
+                                            Next
+                                        </button>
+                                    </div>
                                 </div>
                             </div>
                            
