@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { useState , useEffect } from 'react';
 import jsPDF from 'jspdf'; // Import jsPDF
 import logo from "./assets/logo_for_form.png";
+import logo1 from "./assets/Euro+BAR.png";
 import html2pdf from 'html2pdf.js';
 
 export const Passport = () => {
@@ -27,6 +28,19 @@ export const Passport = () => {
     const [indosissueplace, setIndosissueplace] = useState('');
     const [indosissuedate, setIndosissuedate] = useState('');
     const [indosexpiredate, setIndosexpiredate] = useState('');
+
+    // form 1 data
+    const [fname, setFname] = useState('');
+    const [lname, setLname] = useState('');
+    const [email, setEmail] = useState('');
+    const [phone, setPhone] = useState('');
+    const [phone2, setPhone2] = useState('');
+    const [dob, setDob] = useState('');
+    const [place, setPlace] = useState('');
+    const [bankname, setBankname] = useState('');
+    const [bankan, setBankan] = useState('');
+    const [airport, setAirport] = useState('');
+
  
 
     const win = window.sessionStorage;
@@ -120,6 +134,36 @@ export const Passport = () => {
 
         if(win.getItem('indosexpiredate'))
             setIndosexpiredate(win.getItem('indosexpiredate'));
+
+        if(win.getItem('fname'))
+            setFname(win.getItem('fname'));
+    
+            if(win.getItem('lname'))
+            setLname(win.getItem('lname'));
+    
+            if(win.getItem('phone'))
+            setPhone(win.getItem('phone'));
+    
+            if(win.getItem('phone2'))
+            setPhone2(win.getItem('phone2'));
+    
+            if(win.getItem('dob'))
+            setDob(win.getItem('dob'));
+    
+            if(win.getItem('email'))
+            setEmail(win.getItem('email'));
+        
+            if(win.getItem('place'))
+            setPlace(win.getItem('place'));
+        
+            if(win.getItem('bankname'))
+            setBankname(win.getItem('bankname'));
+        
+            if(win.getItem('bankan'))
+            setBankan(win.getItem('bankan'));
+    
+            if(win.getItem('airport'))
+            setAirport(win.getItem('airport'));
         
     },[])  // Run once when component mounts
 
@@ -147,19 +191,158 @@ export const Passport = () => {
         // Create a container with form data as table rows
         const element = document.createElement('div');
         element.innerHTML = `
-            <h1>Form Data</h1>
-            <img src="${logo}" alt="logo" style="width: 100px; height: auto; margin-bottom: 20px;">
+        <header>
+            <div style="width: 100%; padding: 10px 0;">
+                <div style="display: flex; align-items: center;">
+                   
+                 
+                   
+                    <div style="">
+                        <div style="display: flex; align-items: center; justify-content: space-between;">
+                            <div style="flex: 1; text-align: center;">
+                                <img src="${logo}" alt="Logo" style="height: 70px;" />
+                            </div>
+                            <div style="margin-left:300px">
+                                <img src="${logo1}" alt="Euro+BAR Logo" style="height: 60px; width: 150px;" />
+                            </div>
+                            <div style="text-align: left;">
+                                <p style="color: #0056b3; font-weight: bold; margin: 0; font-size: 15px;">ISO: 9001 : 2015</p>
+                            </div>
+                        </div>
+
+                        <div style="margin-top: 15px;">
+                            <h2 style="margin-left: 40px; width: 100%; color: #0056b3;letter-spacing: 2px; font-weight: bold;">SHREYSUN GLOBAL SHIPPING PVT.LTD.</h2>
+                            <p style="color: #0056b3; font-weight: bold; margin-left: 45px; margin-bottom: 0; font-size: 14px;">
+                                RSPL-MUM-16118 Valid Till: 21.10.2027 & Compliance MLC: 2006 CIN: U63030UP2021PTC141179
+                            </p>
+                            <p style="margin-left: 50px; margin-top: 0; margin-bottom: 0; font-size: 14px; letter-spacing: 1px;">
+                                C-69 SIKARWAR TOWER VIBHUTI KHAND GOMTI NAGAR LUCKNOW U.P-INDIA-226010.
+                            </p>
+                            <p style="margin-left: 55px; margin-top: 0; margin-bottom: 0; font-size: 15px;">
+                                Email: info@shreysunglobal.com - Website: www.shreysunglobal.com - Tel: 0522-4305897
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <hr style="border: 2px solid blue; width: 100%; margin-top: 10px;">
+        </header>
+
+                <h5 style="margin-top:20px;">Passport Details</h5>
+        <table class="pdf-table" style="width: 100%; border-collapse: collapse; border: 1px solid #000;">
+            <tr>
+                <th style="padding: 8px; background-color: #f2f2f2; border: 1px solid #000;"></th>
+                <th style="padding: 8px; background-color: #f2f2f2; border: 1px solid #000;">First Name</th>
+                <th style="padding: 8px; background-color: #f2f2f2; border: 1px solid #000;">Middle Name</th>
+                <th colspan="3" style="padding: 8px; background-color: #f2f2f2; border: 1px solid #000;">Last Name</th>
+            </tr>
+            <tr>
+            <td style="padding: 8px; border: 1px solid #000;"><b>Name:</b></td>
+            <td style="padding: 8px; border: 1px solid #000;">${fname}</td>
+            <td style="padding: 8px; border: 1px solid #000;">${lname}</td>
+            <td colspan="2" style="padding: 8px; border: 1px solid #000;">${lname}</td>
+            </tr>
+        
+            <tr>
+            <td style="padding: 8px; border: 1px solid #000;"><b>Date Of Birth:</b></td>
+            <td style="padding: 8px; border: 1px solid #000;">${dob}</td>
+            <td style="padding: 8px; border: 1px solid #000;"><b>Place Of Birth:</b></td>
+            <td style="padding: 8px; border: 1px solid #000;">${place}</td>
+            <td style="padding: 8px; border: 1px solid #000;"><b>Nationality:</b></td>
+            <td style="padding: 8px; border: 1px solid #000;">Indian</td>
+            </tr>
+            <tr>
+            <td  style="padding: 8px; border: 1px solid #000;"><b>Permanent Address:</b></td>
+            <td colspan="2" style="padding: 8px; border: 1px solid #000;"></td>
+            <td style="padding: 8px; border: 1px solid #000;"><b>Present Address:</b></td>
+            <td colspan="2" style="padding: 8px; border: 1px solid #000;"></td>
+
+            </tr>
+            <tr>
+            <td style="padding: 8px; border: 1px solid #000;"><b>City & Pin code:</b></td>
+            <td colspan="2" style="padding: 8px; border: 1px solid #000;">${yellowfevernumber}</td>
+            <td style="padding: 8px; border: 1px solid #000;"><b>City & Pin code:</b></td>
+            <td colspan="2" style="padding: 8px; border: 1px solid #000;">${yellowfeverissuedate}</td>
+            </tr>
+            <tr>
+            <td style="padding: 8px; border: 1px solid #000;"><b>Telephone 1:</b></td>
+            <td colspan="2" style="padding: 8px; border: 1px solid #000;">${phone}</td>
+            <td style="padding: 8px; border: 1px solid #000;"><b>Telephone 2:</b></td>
+            <td colspan="2" style="padding: 8px; border: 1px solid #000;">${phone2}</td>
+            </tr>
+            <tr>
+            <td style="padding: 8px; border: 1px solid #000;"><b>Email 1:</b></td>
+            <td colspan="2" style="padding: 8px; border: 1px solid #000;">${email}</td>
+            <td style="padding: 8px; border: 1px solid #000;"><b>Email 2:</b></td>
+            <td colspan="2" style="padding: 8px; border: 1px solid #000;"></td>
+            </tr>
+            <tr>
+            <td style="padding: 8px; border: 1px solid #000;"><b>Nearest Airport:</b></td>
+            <td colspan="2" style="padding: 8px; border: 1px solid #000;">${airport}</td>
+            <td style="padding: 8px; border: 1px solid #000;"><b>Nearest Airport:</b></td>
+            <td colspan="2" style="padding: 8px; border: 1px solid #000;">${airport}</td>
+            </tr>
+            <tr>
+            <td style="padding: 8px; border: 1px solid #000;"><b>Bank Name & Branch:</b></td>
+            <td colspan="5" style="padding: 8px; border: 1px solid #000;">${bankname}</td>
+        
+            </tr>
+            <tr>
+            <td style="padding: 8px; border: 1px solid #000;"><b>Account number:</b></td>
+            <td colspan="3" style="padding: 8px; border: 1px solid #000;">${bankan}</td>
+            <td  style="padding: 8px; border: 1px solid #000;"><b>IFSC code:</b></td>
+            <td  style="padding: 8px; border: 1px solid #000;"></td>
+            </tr>
+
+        </table>
+
+        <h5 style="margin-top:20px;">Passport Details</h5>
             <table class="pdf-table" style="width: 100%; border-collapse: collapse; border: 1px solid #000;">
                 <tr>
-                    <th style="padding: 8px; background-color: #f2f2f2; border: 1px solid #000;">Field</th>
-                    <th style="padding: 8px; background-color: #f2f2f2; border: 1px solid #000;">Value</th>
+                    <th style="padding: 8px; background-color: #f2f2f2; border: 1px solid #000;">Documents</th>
+                    <th style="padding: 8px; background-color: #f2f2f2; border: 1px solid #000;">Number</th>
+                    <th style="padding: 8px; background-color: #f2f2f2; border: 1px solid #000;">Place of Issue</th>
+                    <th style="padding: 8px; background-color: #f2f2f2; border: 1px solid #000;">Date of Issue</th>
+                    <th style="padding: 8px; background-color: #f2f2f2; border: 1px solid #000;">Expire date</th>
                 </tr>
-                <tr><td style="padding: 8px; border: 1px solid #000;">Number</td><td style="padding: 8px; border: 1px solid #000;">${passnumber}</td></tr>
-                <tr><td style="padding: 8px; border: 1px solid #000;">Issue place</td><td style="padding: 8px; border: 1px solid #000;">${passissueplace}</td></tr>
-                <tr><td style="padding: 8px; border: 1px solid #000;">Issue date</td><td style="padding: 8px; border: 1px solid #000;">${passissuedate}</td></tr>
-                <tr><td style="padding: 8px; border: 1px solid #000;">Expire date</td><td style="padding: 8px; border: 1px solid #000;">${passexpiredate}</td></tr>
+                <tr>
+                <td style="padding: 8px; border: 1px solid #000;"><b>Passport</b></td>
+                <td style="padding: 8px; border: 1px solid #000;">${passnumber}</td>
+                <td style="padding: 8px; border: 1px solid #000;">${passissueplace}</td>
+                <td style="padding: 8px; border: 1px solid #000;">${passissuedate}</td>
+                <td style="padding: 8px; border: 1px solid #000;">${passexpiredate}</td>
+                </tr>
+                <tr>
+                <td style="padding: 8px; border: 1px solid #000;"><b>Visa</b></td>
+                <td style="padding: 8px; border: 1px solid #000;">${visanumber}</td>
+                <td style="padding: 8px; border: 1px solid #000;">${visaissueplace}</td>
+                <td style="padding: 8px; border: 1px solid #000;">${visaissuedate}</td>
+                <td style="padding: 8px; border: 1px solid #000;">${visaexpiredate}</td>
+                </tr>
+                <tr>
+                <td style="padding: 8px; border: 1px solid #000;"><b>ECNR</b></td>
+                <td style="padding: 8px; border: 1px solid #000;">${ecnrnumber}</td>
+                <td style="padding: 8px; border: 1px solid #000;">${ecnrissueplace}</td>
+                <td style="padding: 8px; border: 1px solid #000;">${ecnrissuedate}</td>
+                <td style="padding: 8px; border: 1px solid #000;">${ecnrexpiredate}</td>
+                </tr>
+                <tr>
+                <td style="padding: 8px; border: 1px solid #000;"><b>Yellow Fever</b></td>
+                <td style="padding: 8px; border: 1px solid #000;">${yellowfevernumber}</td>
+                <td style="padding: 8px; border: 1px solid #000;">${yellowfeverissueplace}</td>
+                <td style="padding: 8px; border: 1px solid #000;">${yellowfeverissuedate}</td>
+                <td style="padding: 8px; border: 1px solid #000;">${yellowfeverexpiredate}</td>
+                </tr>
+                <tr>
+                <td style="padding: 8px; border: 1px solid #000;"><b>INDOS</b></td>
+                <td style="padding: 8px; border: 1px solid #000;">${indosnumber}</td>
+                <td style="padding: 8px; border: 1px solid #000;">${indosissueplace}</td>
+                <td style="padding: 8px; border: 1px solid #000;">${indosissuedate}</td>
+                <td style="padding: 8px; border: 1px solid #000;">${indosexpiredate}</td>
+                </tr>
 
             </table>
+
         `;
 
         // Configure and generate the PDF with html2pdf
