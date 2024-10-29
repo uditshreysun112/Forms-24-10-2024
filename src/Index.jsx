@@ -16,6 +16,8 @@ export const Index = () => {
     const [bankname, setBankname] = useState('');
     const [bankan, setBankan] = useState('');
     const [airport, setAirport] = useState('');
+    const [permanentaddress, setPermanentaddress] = useState('');
+    const [presentaddress, setPresentaddress] = useState('');
 
     const win = window.sessionStorage;
 
@@ -35,6 +37,8 @@ export const Index = () => {
                 win.setItem('bankname', bankname);
                 win.setItem('bankan', bankan);
                 win.setItem('airport', airport);
+                win.setItem('permanentaddress', permanentaddress);
+                win.setItem('presentaddress', presentaddress);
 
         navigate('form_2');  // This will navigate to the 'form_2' page when clicked
       };
@@ -71,6 +75,12 @@ export const Index = () => {
 
         if(win.getItem('airport'))
         setAirport(win.getItem('airport'));
+
+        if(win.getItem('permanentaddress'))
+        setPermanentaddress(win.getItem('permanentaddress'));
+
+        if(win.getItem('presentaddress'))
+        setPresentaddress(win.getItem('presentaddress'));
         
     },[])  // Run once when component mounts
 
@@ -166,7 +176,19 @@ export const Index = () => {
                             <label htmlFor="parent-phone">
                                 PLACE OF BIRTH:<span className="required">*</span>
                             </label>
-                            <input type="text" id="parent-phone" name="parent-phone" placeholder="Place" value={place} onChange={(e)=>setPlace(e.target.value)} required />
+                            <input type="text" id="parent-phone" name="parent-phone" placeholder="Place of birth" value={place} onChange={(e)=>setPlace(e.target.value)} required />
+                        </div>
+                        <div className="form-group text-start">
+                            <label htmlFor="parent-phone">
+                                PERMANENT ADDRESS:<span className="required">*</span>
+                            </label>
+                            <input type="text" id="parent-phone" name="parent-phone" placeholder="Permanent address" value={permanentaddress} onChange={(e)=>setPermanentaddress(e.target.value)} required />
+                        </div>
+                        <div className="form-group text-start">
+                            <label htmlFor="parent-phone">
+                                PERSENT ADDRESS:<span className="required">*</span>
+                            </label>
+                            <input type="text" id="parent-phone" name="parent-phone" placeholder="Present address" value={presentaddress} onChange={(e)=>setPresentaddress(e.target.value)} required />
                         </div>
 
                         <div className="form-group text-start">
@@ -198,7 +220,7 @@ export const Index = () => {
                         <div className="form-group text-start">
                             <label htmlFor="verification">
                                 Verification<span className="required">*</span> <br /><br />
-                            <input type="checkbox" /> I'm not a robot
+                            <input type="checkbox" required /> I'm not a robot
                             </label>
                         </div>
 

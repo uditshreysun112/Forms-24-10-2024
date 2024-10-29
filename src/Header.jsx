@@ -25,10 +25,10 @@ export const Header = () => {
                         </div>
 
                         <div className="mt-3 text-md-start">
-                            <h1 style={{width:'100%'}} className="text-primary fw-bold">SHREYSUN GLOBAL SHIPPING PVT.LTD.</h1>
-                            <p className="text-primary fw-bold mb-0">RSPL-MUM-16118 Valid Till: 21.10.2027 & Compliance MLC: 2006 CIN: U6303UP2021PTC141179</p>
+                            <h1 style={{width:'100%', letterSpacing: '3px'}} className="text-primary fw-bold">SHREYSUN GLOBAL SHIPPING PVT.LTD.</h1>
+                            <p style={{ letterSpacing: '2px'}} className="text-primary fw-bold mb-0">RSPL-MUM-16118 Valid Till: 21.10.2027 & Compliance MLC: 2006 CIN: U6303UP2021PTC141179</p>
                             <p className="mb-0">
-                                <span style={{ fontSize: '18px' }}>C-69 SIKARWAR TOWER VIBHUTI KHAND GOMTI NAGAR LUCKNOW UP-INDIA-226010.</span>
+                                <span style={{ fontSize: '18px' , letterSpacing: '2px'}}>C-69 SIKARWAR TOWER VIBHUTI KHAND GOMTI NAGAR LUCKNOW UP-INDIA-226010.</span>
                                 <br />
                                 <span>Email: info@shreysunglobal.com - Website: www.shreysunglobal.com - Tel: 0522-4305897</span>
                             </p>

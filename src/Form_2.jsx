@@ -9,7 +9,7 @@ export const Form_2 = () => {
     const [wfname, setWfname] = useState('');
     const [wlname, setWlname] = useState('');
     const [wemail, setWemail] = useState('');
-    const [wdob, setWdob] = useState('');  // Defined wdob state
+    const [wdob, setWdob] = useState(''); 
     const [cname1, setCname1] = useState('');
     const [cname2, setCname2] = useState('');
     const [cname3, setCname3] = useState('');
@@ -87,7 +87,7 @@ export const Form_2 = () => {
         if (win.getItem('wfname')) setWfname(win.getItem('wfname'));
         if (win.getItem('wlname')) setWlname(win.getItem('wlname'));
         if (win.getItem('wemail')) setWemail(win.getItem('wemail'));
-        if (win.getItem('wdob')) setWdob(win.getItem('wdob'));  // Load wife's DOB
+        if (win.getItem('wdob')) setWdob(win.getItem('wdob'));
         if (win.getItem('cname1')) setCname1(win.getItem('cname1'));
         if (win.getItem('cname2')) setCname2(win.getItem('cname2'));
         if (win.getItem('cname3')) setCname3(win.getItem('cname3'));
@@ -207,7 +207,7 @@ export const Form_2 = () => {
 
                         <div className="form-group text-start">
                             <label htmlFor="parent-name">
-                                CHILD 1:<span className="required">*</span>
+                                CHILD 1:<span className="required"></span>
                             </label>
                             <div className="name-field">
                                 <input
@@ -217,7 +217,7 @@ export const Form_2 = () => {
                                     placeholder="Name"
                                     value={cname1}
                                     onChange={(e) => setCname1(e.target.value)}
-                                    required
+                                    
                                 />
                             </div>
                         </div>
@@ -230,13 +230,13 @@ export const Form_2 = () => {
                                 placeholder="DOB"
                                 value={cdob1}
                                 onChange={(e) => setCdob1(e.target.value)}
-                                required
+                                
                             />
                         </div>
 
                         <div className="form-group text-start">
                             <label htmlFor="child2-name">
-                                CHILD 2:<span className="required">*</span>
+                                CHILD 2:<span className="required"></span>
                             </label>
                             <div className="name-field">
                                 <input
@@ -246,7 +246,7 @@ export const Form_2 = () => {
                                     placeholder="Name"
                                     value={cname2}
                                     onChange={(e) => setCname2(e.target.value)}
-                                    required
+                                    
                                 />
                             </div>
                         </div>
@@ -259,13 +259,13 @@ export const Form_2 = () => {
                                 placeholder="DOB"
                                 value={cdob2}
                                 onChange={(e) => setCdob2(e.target.value)}
-                                required
+                                
                             />
                         </div>
 
                         <div className="form-group text-start">
                             <label htmlFor="child3-name">
-                                CHILD 3:<span className="required">*</span>
+                                CHILD 3:<span className="required"></span>
                             </label>
                             <div className="name-field">
                                 <input
@@ -275,7 +275,7 @@ export const Form_2 = () => {
                                     placeholder="Name"
                                     value={cname3}
                                     onChange={(e) => setCname3(e.target.value)}
-                                    required
+                                    
                                 />
                             </div>
                         </div>
@@ -288,13 +288,13 @@ export const Form_2 = () => {
                                 placeholder="DOB"
                                 value={cdob3}
                                 onChange={(e) => setCdob3(e.target.value)}
-                                required
+                                
                             />
                         </div>
 
                         <div className="form-group text-start">
                             <label htmlFor="parent-email">
-                                Email I'd:<span className="required">*</span>
+                                Email I'd:<span className="required"></span>
                             </label>
                             <input
                                 type="email"
@@ -302,7 +302,7 @@ export const Form_2 = () => {
                                 name="parent-email"
                                 value={wemail}
                                 onChange={(e) => setWemail(e.target.value)}
-                                required
+                                
                             />
                         </div>
 
@@ -310,7 +310,7 @@ export const Form_2 = () => {
                             <label htmlFor="verification">
                                 Verification<span className="required">*</span>
                                 <br /><br />
-                                <input type="checkbox" /> I'm not a robot
+                                <input type="checkbox" required /> I'm not a robot
                             </label>
                         </div>
 

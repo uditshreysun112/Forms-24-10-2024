@@ -1,6 +1,6 @@
 import './index.css'
 import { useNavigate } from 'react-router-dom';
-import { useState , useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import jsPDF from 'jspdf'; // Import jsPDF
 import logo from "./assets/logo_for_form.png";
 import logo1 from "./assets/Euro+BAR.png";
@@ -41,7 +41,18 @@ export const Passport = () => {
     const [bankan, setBankan] = useState('');
     const [airport, setAirport] = useState('');
 
- 
+    // form 2 data
+
+    const [wfname, setWfname] = useState('');
+    const [wlname, setWlname] = useState('');
+    const [wemail, setWemail] = useState('');
+    const [wdob, setWdob] = useState(''); 
+    const [cname1, setCname1] = useState('');
+    const [cname2, setCname2] = useState('');
+    const [cname3, setCname3] = useState('');
+    const [cdob1, setCdob1] = useState('');
+    const [cdob2, setCdob2] = useState('');
+    const [cdob3, setCdob3] = useState('');
 
     const win = window.sessionStorage;
 
@@ -50,122 +61,136 @@ export const Passport = () => {
     const handleSubmit = (e) => {
         e.preventDefault();
 
-                // Save data in sessionStorage
-                win.setItem('passnumber', passnumber);
-                win.setItem('passissueplace', passissueplace);
-                win.setItem('passissuedate', passissuedate);
-                win.setItem('passexpiredate', passexpiredate);
-                win.setItem('visanumber', visanumber);
-                win.setItem('visaissueplace', visaissueplace);
-                win.setItem('visaissuedate', visaissuedate);
-                win.setItem('visaexpiredate', visaexpiredate);
-                win.setItem('ecnrnumber', ecnrnumber);
-                win.setItem('ecnrissueplace', ecnrissueplace);
-                win.setItem('ecnrissuedate', ecnrissuedate);
-                win.setItem('ecnrexpiredate', ecnrexpiredate);
-                win.setItem('yellowfevernumber',yellowfevernumber );
-                win.setItem('yellowfeverissueplace',yellowfeverissueplace );
-                win.setItem('yellowfeverissuedate',yellowfeverissuedate );
-                win.setItem('yellowfeverexpiredate',yellowfeverexpiredate );
-                win.setItem('indosnumber',indosnumber );
-                win.setItem('indosissueplace', indosissueplace);
-                win.setItem('indosissuedate',indosissuedate );
-                win.setItem('indosexpiredate',indosexpiredate );
+        // Save data in sessionStorage
+        win.setItem('passnumber', passnumber);
+        win.setItem('passissueplace', passissueplace);
+        win.setItem('passissuedate', passissuedate);
+        win.setItem('passexpiredate', passexpiredate);
+        win.setItem('visanumber', visanumber);
+        win.setItem('visaissueplace', visaissueplace);
+        win.setItem('visaissuedate', visaissuedate);
+        win.setItem('visaexpiredate', visaexpiredate);
+        win.setItem('ecnrnumber', ecnrnumber);
+        win.setItem('ecnrissueplace', ecnrissueplace);
+        win.setItem('ecnrissuedate', ecnrissuedate);
+        win.setItem('ecnrexpiredate', ecnrexpiredate);
+        win.setItem('yellowfevernumber', yellowfevernumber);
+        win.setItem('yellowfeverissueplace', yellowfeverissueplace);
+        win.setItem('yellowfeverissuedate', yellowfeverissuedate);
+        win.setItem('yellowfeverexpiredate', yellowfeverexpiredate);
+        win.setItem('indosnumber', indosnumber);
+        win.setItem('indosissueplace', indosissueplace);
+        win.setItem('indosissuedate', indosissuedate);
+        win.setItem('indosexpiredate', indosexpiredate);
 
         navigate('');  // This will navigate to the 'form_2' page when clicked
-      };
+    };
 
     // Load data from sessionStorage when component mounts
-    
-    useEffect(()=>{
-        if(win.getItem('passnumber'))
+
+    useEffect(() => {
+        if (win.getItem('passnumber'))
             setPassnumber(win.getItem('passnumber'));
 
-        if(win.getItem('passissueplace'))
+        if (win.getItem('passissueplace'))
             setPassissueplace(win.getItem('passissueplace'));
 
-        if(win.getItem('passissuedate'))
+        if (win.getItem('passissuedate'))
             setPassissuedate(win.getItem('passissuedate'));
 
-        if(win.getItem('passexpiredate'))
+        if (win.getItem('passexpiredate'))
             setPassexpiredate(win.getItem('passexpiredate'));
 
-        if(win.getItem('visanumber'))
+        if (win.getItem('visanumber'))
             setVisanumber(win.getItem('visanumber'));
 
-        if(win.getItem('visaissueplace'))
+        if (win.getItem('visaissueplace'))
             setVisaissueplace(win.getItem('visaissueplace'));
-    
-        if(win.getItem('visaissuedate'))
+
+        if (win.getItem('visaissuedate'))
             setVisaissuedate(win.getItem('visaissuedate'));
-    
-        if(win.getItem('visaexpiredate'))
+
+        if (win.getItem('visaexpiredate'))
             setVisaexpiredate(win.getItem('visaexpiredate'));
-    
-        if(win.getItem('ecnrnumber'))
+
+        if (win.getItem('ecnrnumber'))
             setEcnrnumber(win.getItem('ecnrnumber'));
 
-        if(win.getItem('ecnrissuedate'))
+        if (win.getItem('ecnrissuedate'))
             setEcnrissuedate(win.getItem('ecnrissuedate'));
 
-        if(win.getItem('ecnrissueplace'))
+        if (win.getItem('ecnrissueplace'))
             setEcnrissueplace(win.getItem('ecnrissueplace'));
+        
+        if (win.getItem('ecnrexpiredate'))
+            setEcnrexpiredate(win.getItem('ecnrexpiredate'));
 
-        if(win.getItem('yellowfevernumber'))
+        if (win.getItem('yellowfevernumber'))
             setYellowfevernumber(win.getItem('yellowfevernumber'));
 
-        if(win.getItem('yellowfeverissueplace'))
+        if (win.getItem('yellowfeverissueplace'))
             setYellowfeverissueplace(win.getItem('yellowfeverissueplace'));
 
-        if(win.getItem('yellowfeverissuedate'))
+        if (win.getItem('yellowfeverissuedate'))
             setYellowfeverissuedate(win.getItem('yellowfeverissuedate'));
 
-        if(win.getItem('yellowfeverexpiredate'))
+        if (win.getItem('yellowfeverexpiredate'))
             setYellowfeverexpiredate(win.getItem('yellowfeverexpiredate'));
 
-        if(win.getItem('indosnumber'))
+        if (win.getItem('indosnumber'))
             setIndosnumber(win.getItem('indosnumber'));
 
-        if(win.getItem('indosissueplace'))
+        if (win.getItem('indosissueplace'))
             setIndosissueplace(win.getItem('indosissueplace'));
 
-        if(win.getItem('indosissuedate'))
+        if (win.getItem('indosissuedate'))
             setIndosissuedate(win.getItem('indosissuedate'));
 
-        if(win.getItem('indosexpiredate'))
+        if (win.getItem('indosexpiredate'))
             setIndosexpiredate(win.getItem('indosexpiredate'));
-
-        if(win.getItem('fname'))
+// Form 1------------------------------------
+        if (win.getItem('fname'))
             setFname(win.getItem('fname'));
-    
-            if(win.getItem('lname'))
+
+        if (win.getItem('lname'))
             setLname(win.getItem('lname'));
-    
-            if(win.getItem('phone'))
+
+        if (win.getItem('phone'))
             setPhone(win.getItem('phone'));
-    
-            if(win.getItem('phone2'))
+
+        if (win.getItem('phone2'))
             setPhone2(win.getItem('phone2'));
-    
-            if(win.getItem('dob'))
+
+        if (win.getItem('dob'))
             setDob(win.getItem('dob'));
-    
-            if(win.getItem('email'))
+
+        if (win.getItem('email'))
             setEmail(win.getItem('email'));
-        
-            if(win.getItem('place'))
+
+        if (win.getItem('place'))
             setPlace(win.getItem('place'));
-        
-            if(win.getItem('bankname'))
+
+        if (win.getItem('bankname'))
             setBankname(win.getItem('bankname'));
-        
-            if(win.getItem('bankan'))
+
+        if (win.getItem('bankan'))
             setBankan(win.getItem('bankan'));
-    
-            if(win.getItem('airport'))
+
+        if (win.getItem('airport'))
             setAirport(win.getItem('airport'));
-        
-    },[])  // Run once when component mounts
+//form 2------------------------------
+        if (win.getItem('wfname')) setWfname(win.getItem('wfname'));
+        if (win.getItem('wlname')) setWlname(win.getItem('wlname'));
+        if (win.getItem('wemail')) setWemail(win.getItem('wemail'));
+        if (win.getItem('wdob')) setWdob(win.getItem('wdob'));
+        if (win.getItem('cname1')) setCname1(win.getItem('cname1'));
+        if (win.getItem('cname2')) setCname2(win.getItem('cname2'));
+        if (win.getItem('cname3')) setCname3(win.getItem('cname3'));
+        if (win.getItem('cdob1')) setCdob1(win.getItem('cdob1'));
+        if (win.getItem('cdob2')) setCdob2(win.getItem('cdob2'));
+        if (win.getItem('cdob3')) setCdob3(win.getItem('cdob3'));   
+
+    }, [])  // Run once when component mounts
 
     //  Function to generate PDF
     //  const generatePDF = () => {
@@ -186,8 +211,8 @@ export const Passport = () => {
     //     doc.save('form_data.pdf');
     // };
 
-     // Function to generate PDF
-     const getContentInPDF = () => {
+    // Function to generate PDF
+    const getContentInPDF = () => {
         // Create a container with form data as table rows
         const element = document.createElement('div');
         element.innerHTML = `
@@ -218,8 +243,8 @@ export const Passport = () => {
                             <p style="margin-left: 50px; margin-top: 0; margin-bottom: 0; font-size: 14px; letter-spacing: 1px;">
                                 C-69 SIKARWAR TOWER VIBHUTI KHAND GOMTI NAGAR LUCKNOW U.P-INDIA-226010.
                             </p>
-                            <p style="margin-left: 55px; margin-top: 0; margin-bottom: 0; font-size: 15px;">
-                                Email: info@shreysunglobal.com - Website: www.shreysunglobal.com - Tel: 0522-4305897
+                            <p style="margin-left: 100px; margin-top: 0; margin-bottom: 0; font-size: 15px;">
+                                Email: admin@shreysun.com  - Website: www.shreysun.com - Tel: 0522-4305897
                             </p>
                         </div>
                     </div>
@@ -228,7 +253,7 @@ export const Passport = () => {
             <hr style="border: 2px solid blue; width: 100%; margin-top: 10px;">
         </header>
 
-                <h5 style="margin-top:20px;">Passport Details</h5>
+                <h5 style="margin-top:20px;">1. Personal Details</h5>
         <table class="pdf-table" style="width: 100%; border-collapse: collapse; border: 1px solid #000;">
             <tr>
                 <th style="padding: 8px; background-color: #f2f2f2; border: 1px solid #000;"></th>
@@ -240,7 +265,7 @@ export const Passport = () => {
             <td style="padding: 8px; border: 1px solid #000;"><b>Name:</b></td>
             <td style="padding: 8px; border: 1px solid #000;">${fname}</td>
             <td style="padding: 8px; border: 1px solid #000;">${lname}</td>
-            <td colspan="2" style="padding: 8px; border: 1px solid #000;">${lname}</td>
+            <td colspan="3" style="padding: 8px; border: 1px solid #000;">${lname}</td>
             </tr>
         
             <tr>
@@ -296,14 +321,92 @@ export const Passport = () => {
 
         </table>
 
-        <h5 style="margin-top:20px;">Passport Details</h5>
+        <h5 style="margin-top: 20px" >2. Family Details</h5>
+
+        <table class="pdf-table" style="width: 100%; border-collapse: collapse; border: 1px solid #000;">
+        <tr>
+            <th style="padding: 8px; background-color: #f2f2f2; border: 1px solid #000;"></th>
+            <th style="padding: 8px; background-color: #f2f2f2; border: 1px solid #000;">NAME</th>
+            <th style="padding: 8px; background-color: #f2f2f2; border: 1px solid #000;">D.O.B</th>
+            <th style="padding: 8px; background-color: #f2f2f2; border: 1px solid #000;">EMAIL</th>
+            <th colspan="3" style="padding: 8px; background-color: #f2f2f2; border: 1px solid #000;">ISSUE / VALIDITY
+            </th>
+        </tr>
+        <tr>
+            <td style="padding: 8px; border: 1px solid #000;"><b>Wife:</b></td>
+            <td style="padding: 8px; border: 1px solid #000;">${wfname}</td>
+            <td style="padding: 8px; border: 1px solid #000;">${wdob}</td>
+            <td style="padding: 8px; border: 1px solid #000;">${wemail}</td>
+            <td style="padding: 8px; border: 1px solid #000;">Issue date</td>
+        </tr>
+        <tr>
+            <td style="padding: 8px; border: 1px solid #000;"><b>Child (M/F) 1:</b></td>
+            <td style="padding: 8px; border: 1px solid #000;">${cname1}</td>
+            <td style="padding: 8px; border: 1px solid #000;">${cdob1}</td>
+            <td style="padding: 8px; border: 1px solid #000;"></td>
+            <td style="padding: 8px; border: 1px solid #000;"></td>
+        </tr>
+        <tr>
+            <td style="padding: 8px; border: 1px solid #000;"><b>Child (M/F) 2:</b></td>
+            <td style="padding: 8px; border: 1px solid #000;">${cname2}</td>
+            <td style="padding: 8px; border: 1px solid #000;">${cdob2}</td>
+            <td style="padding: 8px; border: 1px solid #000;"></td>
+            <td style="padding: 8px; border: 1px solid #000;"></td>
+        </tr>
+        <tr>
+            <td style="padding: 8px; border: 1px solid #000;"><b>Child (M/F) 3:</b></td>
+            <td style="padding: 8px; border: 1px solid #000;">${cname3}</td>
+            <td style="padding: 8px; border: 1px solid #000;">${cdob3}</td>
+            <td style="padding: 8px; border: 1px solid #000;"></td>
+            <td style="padding: 8px; border: 1px solid #000;"></td>
+        </tr>
+        </table>
+
+        <header style="margin-top:101px">
+            <div style="width: 100%; padding: 10px 0;">
+                <div style="display: flex; align-items: center;">
+                   
+                 
+                   
+                    <div style="">
+                        <div style="display: flex; align-items: center; justify-content: space-between;">
+                            <div style="flex: 1; text-align: center;">
+                                <img src="${logo}" alt="Logo" style="height: 70px;" />
+                            </div>
+                            <div style="margin-left:300px">
+                                <img src="${logo1}" alt="Euro+BAR Logo" style="height: 60px; width: 150px;" />
+                            </div>
+                            <div style="text-align: left;">
+                                <p style="color: #0056b3; font-weight: bold; margin: 0; font-size: 15px;">ISO: 9001 : 2015</p>
+                            </div>
+                        </div>
+
+                        <div style="margin-top: 15px;">
+                            <h2 style="margin-left: 40px; width: 100%; color: #0056b3;letter-spacing: 2px; font-weight: bold;">SHREYSUN GLOBAL SHIPPING PVT.LTD.</h2>
+                            <p style="color: #0056b3; font-weight: bold; margin-left: 45px; margin-bottom: 0; font-size: 14px;">
+                                RSPL-MUM-16118 Valid Till: 21.10.2027 & Compliance MLC: 2006 CIN: U63030UP2021PTC141179
+                            </p>
+                            <p style="margin-left: 50px; margin-top: 0; margin-bottom: 0; font-size: 14px; letter-spacing: 1px;">
+                                C-69 SIKARWAR TOWER VIBHUTI KHAND GOMTI NAGAR LUCKNOW U.P-INDIA-226010.
+                            </p>
+                            <p style="margin-left: 100px; margin-top: 0; margin-bottom: 0; font-size: 15px;">
+                                Email: admin@shreysun.com  - Website: www.shreysun.com - Tel: 0522-4305897
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <hr style="border: 2px solid blue; width: 100%; margin-top: 10px;">
+        </header>
+
+        <h5 style="margin-top:20px;">3. Passport Details</h5>
             <table class="pdf-table" style="width: 100%; border-collapse: collapse; border: 1px solid #000;">
                 <tr>
                     <th style="padding: 8px; background-color: #f2f2f2; border: 1px solid #000;">Documents</th>
                     <th style="padding: 8px; background-color: #f2f2f2; border: 1px solid #000;">Number</th>
                     <th style="padding: 8px; background-color: #f2f2f2; border: 1px solid #000;">Place of Issue</th>
                     <th style="padding: 8px; background-color: #f2f2f2; border: 1px solid #000;">Date of Issue</th>
-                    <th style="padding: 8px; background-color: #f2f2f2; border: 1px solid #000;">Expire date</th>
+                    <th style="padding: 8px; background-color: #f2f2f2; border: 1px solid #000;">Date of Expire</th>
                 </tr>
                 <tr>
                 <td style="padding: 8px; border: 1px solid #000;"><b>Passport</b></td>
@@ -343,6 +446,45 @@ export const Passport = () => {
 
             </table>
 
+            <h5 style="margin-top:20px;">4. Continuous Details</h5>
+        <table class="pdf-table" style="width: 100%; border-collapse: collapse; border: 1px solid #000;">
+            <tr>
+                <th style="padding: 8px; background-color: #f2f2f2; border: 1px solid #000;">CDC</th>
+                <th style="padding: 8px; background-color: #f2f2f2; border: 1px solid #000;">Number</th>
+                <th style="padding: 8px; background-color: #f2f2f2; border: 1px solid #000;">Place of Issue</th>
+                <th style="padding: 8px; background-color: #f2f2f2; border: 1px solid #000;">Date of Issue</th>
+                <th style="padding: 8px; background-color: #f2f2f2; border: 1px solid #000;">Date of Expire</th>
+            </tr>
+            <tr>
+                <td style="padding: 8px; border: 1px solid #000;"><b>INDIAN</b></td>
+                <td style="padding: 8px; border: 1px solid #000;">${passnumber}</td>
+                <td style="padding: 8px; border: 1px solid #000;">${passissueplace}</td>
+                <td style="padding: 8px; border: 1px solid #000;">${passissuedate}</td>
+                <td style="padding: 8px; border: 1px solid #000;">${passexpiredate}</td>
+            </tr>
+            <tr>
+                <td style="padding: 8px; border: 1px solid #000;"><b>PANAMA</b></td>
+                <td style="padding: 8px; border: 1px solid #000;">${visanumber}</td>
+                <td style="padding: 8px; border: 1px solid #000;">${visaissueplace}</td>
+                <td style="padding: 8px; border: 1px solid #000;">${visaissuedate}</td>
+                <td style="padding: 8px; border: 1px solid #000;">${visaexpiredate}</td>
+            </tr>
+            <tr>
+                <td style="padding: 8px; border: 1px solid #000;"><b>LIBERIAN</b></td>
+                <td style="padding: 8px; border: 1px solid #000;">${ecnrnumber}</td>
+                <td style="padding: 8px; border: 1px solid #000;">${ecnrissueplace}</td>
+                <td style="padding: 8px; border: 1px solid #000;">${ecnrissuedate}</td>
+                <td style="padding: 8px; border: 1px solid #000;">${ecnrexpiredate}</td>
+            </tr>
+            <tr>
+                <td style="padding: 8px; border: 1px solid #000;"><b>OTHERS</b></td>
+                <td style="padding: 8px; border: 1px solid #000;">${yellowfevernumber}</td>
+                <td style="padding: 8px; border: 1px solid #000;">${yellowfeverissueplace}</td>
+                <td style="padding: 8px; border: 1px solid #000;">${yellowfeverissuedate}</td>
+                <td style="padding: 8px; border: 1px solid #000;">${yellowfeverexpiredate}</td>
+            </tr>
+        </table>
+
         `;
 
         // Configure and generate the PDF with html2pdf
@@ -360,7 +502,7 @@ export const Passport = () => {
     };
 
     const handlePreviousClick = () => {
-        navigate('/form_2'); 
+        navigate('/form_2');
     };
 
 
@@ -382,53 +524,53 @@ export const Passport = () => {
                             <div className="name-field">
                                 <div className='row mt-3'>
                                     <div className="col-md-3 ">
-                                    <p className='text-start' style={{marginBottom:'0'}}>Number</p>
-                                    <input
-                                    type="text"
-                                    id="pass-number"
-                                    name="pass-number"
-                                    placeholder="number"
-                                    value={passnumber} onChange={(e)=>setPassnumber(e.target.value)}
-                                    required
-                                    />
+                                        <p className='text-start' style={{ marginBottom: '0' }}>Number</p>
+                                        <input
+                                            type="text"
+                                            id="pass-number"
+                                            name="pass-number"
+                                            placeholder="number"
+                                            value={passnumber} onChange={(e) => setPassnumber(e.target.value)}
+                                            required
+                                        />
                                     </div>
 
                                     <div className="col-md-3">
-                                    <p className='text-start' style={{marginBottom:'0'}}>Place</p>
-                                    <input
-                                    type="text"
-                                    id="pass-place"
-                                    name="pass-place"
-                                    placeholder="place of issue"
-                                    value={passissueplace} onChange={(e)=>setPassissueplace(e.target.value)}
-                                    required
-                                    />
+                                        <p className='text-start' style={{ marginBottom: '0' }}>Place</p>
+                                        <input
+                                            type="text"
+                                            id="pass-place"
+                                            name="pass-place"
+                                            placeholder="place of issue"
+                                            value={passissueplace} onChange={(e) => setPassissueplace(e.target.value)}
+                                            required
+                                        />
                                     </div>
 
                                     <div className="col-md-3">
-                                    <p className='text-start' style={{marginBottom:'0'}}>Issue date</p>
-                                    <input
-                                    type="date"
-                                    id="pass-issue-date"
-                                    name="pass-issue-date"
-                                    placeholder="issue date"
-                                    value={passissuedate} onChange={(e)=>setPassissuedate(e.target.value)}
-                                    required
-                                    />
+                                        <p className='text-start' style={{ marginBottom: '0' }}>Issue date</p>
+                                        <input
+                                            type="date"
+                                            id="pass-issue-date"
+                                            name="pass-issue-date"
+                                            placeholder="issue date"
+                                            value={passissuedate} onChange={(e) => setPassissuedate(e.target.value)}
+                                            required
+                                        />
                                     </div>
 
                                     <div className="col-md-3">
-                                    <p className='text-start' style={{marginBottom:'0'}}>Expire date</p>
-                                    <input
-                                    type="date"
-                                    id="pass-expire-date"
-                                    name="pass-expire-date"
-                                    placeholder="expire date"
-                                    value={passexpiredate} onChange={(e)=>setPassexpiredate(e.target.value)}
-                                    required
-                                    />
+                                        <p className='text-start' style={{ marginBottom: '0' }}>Expire date</p>
+                                        <input
+                                            type="date"
+                                            id="pass-expire-date"
+                                            name="pass-expire-date"
+                                            placeholder="expire date"
+                                            value={passexpiredate} onChange={(e) => setPassexpiredate(e.target.value)}
+                                            required
+                                        />
                                     </div>
-                                    
+
                                 </div>
                             </div>
                         </div>
@@ -441,51 +583,51 @@ export const Passport = () => {
                             <div className="name-field">
                                 <div className='row mt-3'>
                                     <div className="col-md-3 ">
-                                    <p className='text-start' style={{marginBottom:'0'}}>Number</p>
-                                    <input
-                                    type="text"
-                                    id="visa-number"
-                                    name="visa-number"
-                                    placeholder="number"
-                                    value={visanumber} onChange={(e)=>setVisanumber(e.target.value)}
-                                    required
-                                    />
+                                        <p className='text-start' style={{ marginBottom: '0' }}>Number</p>
+                                        <input
+                                            type="text"
+                                            id="visa-number"
+                                            name="visa-number"
+                                            placeholder="number"
+                                            value={visanumber} onChange={(e) => setVisanumber(e.target.value)}
+                                            required
+                                        />
                                     </div>
 
                                     <div className="col-md-3">
-                                    <p className='text-start' style={{marginBottom:'0'}}>Place</p>
-                                    <input
-                                    type="text"
-                                    id="visa-place"
-                                    name="visa-place"
-                                    placeholder="place of issue"
-                                    value={visaissueplace} onChange={(e)=>setVisaissueplace(e.target.value)}
-                                    required
-                                    />
+                                        <p className='text-start' style={{ marginBottom: '0' }}>Place</p>
+                                        <input
+                                            type="text"
+                                            id="visa-place"
+                                            name="visa-place"
+                                            placeholder="place of issue"
+                                            value={visaissueplace} onChange={(e) => setVisaissueplace(e.target.value)}
+                                            required
+                                        />
                                     </div>
 
                                     <div className="col-md-3">
-                                    <p className='text-start' style={{marginBottom:'0'}}>Issue date</p>
-                                    <input
-                                    type="date"
-                                    id="visa-issue-date"
-                                    name="visa-issue-date"
-                                    placeholder="issue date"
-                                    value={visaissuedate} onChange={(e)=>setVisaissuedate(e.target.value)}
-                                    required
-                                    />
+                                        <p className='text-start' style={{ marginBottom: '0' }}>Issue date</p>
+                                        <input
+                                            type="date"
+                                            id="visa-issue-date"
+                                            name="visa-issue-date"
+                                            placeholder="issue date"
+                                            value={visaissuedate} onChange={(e) => setVisaissuedate(e.target.value)}
+                                            required
+                                        />
                                     </div>
 
                                     <div className="col-md-3">
-                                    <p className='text-start' style={{marginBottom:'0'}}>Expire date</p>
-                                    <input
-                                    type="date"
-                                    id="visa-expire-date"
-                                    name="visa-expire-date"
-                                    placeholder="expire date"
-                                    value={visaexpiredate} onChange={(e)=>setVisaexpiredate(e.target.value)}
-                                    required
-                                    />
+                                        <p className='text-start' style={{ marginBottom: '0' }}>Expire date</p>
+                                        <input
+                                            type="date"
+                                            id="visa-expire-date"
+                                            name="visa-expire-date"
+                                            placeholder="expire date"
+                                            value={visaexpiredate} onChange={(e) => setVisaexpiredate(e.target.value)}
+                                            required
+                                        />
                                     </div>
 
                                 </div>
@@ -500,51 +642,51 @@ export const Passport = () => {
                             <div className="name-field">
                                 <div className='row mt-3'>
                                     <div className="col-md-3 ">
-                                    <p className='text-start' style={{marginBottom:'0'}}>Number</p>
-                                    <input
-                                    type="text"
-                                    id="ecrn-number"
-                                    name="ecrn-number"
-                                    placeholder="number"
-                                    value={ecnrnumber} onChange={(e)=>setEcnrnumber(e.target.value)}
-                                    required
-                                    />
+                                        <p className='text-start' style={{ marginBottom: '0' }}>Number</p>
+                                        <input
+                                            type="text"
+                                            id="ecrn-number"
+                                            name="ecrn-number"
+                                            placeholder="number"
+                                            value={ecnrnumber} onChange={(e) => setEcnrnumber(e.target.value)}
+                                            required
+                                        />
                                     </div>
 
                                     <div className="col-md-3">
-                                    <p className='text-start' style={{marginBottom:'0'}}>Place</p>
-                                    <input
-                                    type="text"
-                                    id="ecrn-place"
-                                    name="ecrn-place"
-                                    placeholder="place of issue"
-                                    value={ecnrissueplace} onChange={(e)=>setEcnrissueplace(e.target.value)}
-                                    required
-                                    />
+                                        <p className='text-start' style={{ marginBottom: '0' }}>Place</p>
+                                        <input
+                                            type="text"
+                                            id="ecrn-place"
+                                            name="ecrn-place"
+                                            placeholder="place of issue"
+                                            value={ecnrissueplace} onChange={(e) => setEcnrissueplace(e.target.value)}
+                                            required
+                                        />
                                     </div>
 
                                     <div className="col-md-3">
-                                    <p className='text-start' style={{marginBottom:'0'}}>Issue date</p>
-                                    <input
-                                    type="date"
-                                    id="ecrn-issue-date"
-                                    name="ecrn-issue-date"
-                                    placeholder="issue date"
-                                    value={ecnrissuedate} onChange={(e)=>setEcnrissuedate(e.target.value)}
-                                    required
-                                    />
+                                        <p className='text-start' style={{ marginBottom: '0' }}>Issue date</p>
+                                        <input
+                                            type="date"
+                                            id="ecrn-issue-date"
+                                            name="ecrn-issue-date"
+                                            placeholder="issue date"
+                                            value={ecnrissuedate} onChange={(e) => setEcnrissuedate(e.target.value)}
+                                            required
+                                        />
                                     </div>
 
                                     <div className="col-md-3">
-                                    <p className='text-start' style={{marginBottom:'0'}}>Expire date</p>
-                                    <input
-                                    type="date"
-                                    id="ecrn-expire-date"
-                                    name="ecrn-expire-date"
-                                    placeholder="expire date"
-                                    value={ecnrexpiredate} onChange={(e)=>setEcnrexpiredate(e.target.value)}
-                                    required
-                                    />
+                                        <p className='text-start' style={{ marginBottom: '0' }}>Expire date</p>
+                                        <input
+                                            type="date"
+                                            id="ecrn-expire-date"
+                                            name="ecrn-expire-date"
+                                            placeholder="expire date"
+                                            value={ecnrexpiredate} onChange={(e) => setEcnrexpiredate(e.target.value)}
+                                            required
+                                        />
                                     </div>
 
                                 </div>
@@ -559,51 +701,51 @@ export const Passport = () => {
                             <div className="name-field">
                                 <div className='row mt-3'>
                                     <div className="col-md-3 ">
-                                    <p className='text-start' style={{marginBottom:'0'}}>Number</p>
-                                    <input
-                                    type="text"
-                                    id="yellow-number"
-                                    name="yellow-number"
-                                    placeholder="number"
-                                    value={yellowfevernumber} onChange={(e)=>setYellowfevernumber(e.target.value)}
-                                    required
-                                    />
+                                        <p className='text-start' style={{ marginBottom: '0' }}>Number</p>
+                                        <input
+                                            type="text"
+                                            id="yellow-number"
+                                            name="yellow-number"
+                                            placeholder="number"
+                                            value={yellowfevernumber} onChange={(e) => setYellowfevernumber(e.target.value)}
+                                            required
+                                        />
                                     </div>
 
                                     <div className="col-md-3">
-                                    <p className='text-start' style={{marginBottom:'0'}}>Place</p>
-                                    <input
-                                    type="text"
-                                    id="yellow-place"
-                                    name="yellow-place"
-                                    placeholder="place of issue"
-                                    value={yellowfeverissueplace} onChange={(e)=>setYellowfeverissueplace(e.target.value)}
-                                    required
-                                    />
+                                        <p className='text-start' style={{ marginBottom: '0' }}>Place</p>
+                                        <input
+                                            type="text"
+                                            id="yellow-place"
+                                            name="yellow-place"
+                                            placeholder="place of issue"
+                                            value={yellowfeverissueplace} onChange={(e) => setYellowfeverissueplace(e.target.value)}
+                                            required
+                                        />
                                     </div>
 
                                     <div className="col-md-3">
-                                    <p className='text-start' style={{marginBottom:'0'}}>Issue date</p>
-                                    <input
-                                    type="date"
-                                    id="yellow-issue-date"
-                                    name="yellow-issue-date"
-                                    placeholder="issue date"
-                                    value={yellowfeverissuedate} onChange={(e)=>setYellowfeverissuedate(e.target.value)}
-                                    required
-                                    />
+                                        <p className='text-start' style={{ marginBottom: '0' }}>Issue date</p>
+                                        <input
+                                            type="date"
+                                            id="yellow-issue-date"
+                                            name="yellow-issue-date"
+                                            placeholder="issue date"
+                                            value={yellowfeverissuedate} onChange={(e) => setYellowfeverissuedate(e.target.value)}
+                                            required
+                                        />
                                     </div>
 
                                     <div className="col-md-3">
-                                    <p className='text-start' style={{marginBottom:'0'}}>Expire date</p>
-                                    <input
-                                    type="date"
-                                    id="yellow-expire-date"
-                                    name="yellow-expire-date"
-                                    placeholder="expire date"
-                                    value={yellowfeverexpiredate} onChange={(e)=>setYellowfeverexpiredate(e.target.value)}
-                                    required
-                                    />
+                                        <p className='text-start' style={{ marginBottom: '0' }}>Expire date</p>
+                                        <input
+                                            type="date"
+                                            id="yellow-expire-date"
+                                            name="yellow-expire-date"
+                                            placeholder="expire date"
+                                            value={yellowfeverexpiredate} onChange={(e) => setYellowfeverexpiredate(e.target.value)}
+                                            required
+                                        />
                                     </div>
 
                                 </div>
@@ -618,51 +760,51 @@ export const Passport = () => {
                             <div className="name-field">
                                 <div className='row mt-3'>
                                     <div className="col-md-3 ">
-                                    <p className='text-start' style={{marginBottom:'0'}}>Number</p>
-                                    <input
-                                    type="text"
-                                    id="indos-number"
-                                    name="indos-number"
-                                    placeholder="number"
-                                    value={indosnumber} onChange={(e)=>setIndosnumber(e.target.value)}
-                                    required
-                                    />
+                                        <p className='text-start' style={{ marginBottom: '0' }}>Number</p>
+                                        <input
+                                            type="text"
+                                            id="indos-number"
+                                            name="indos-number"
+                                            placeholder="number"
+                                            value={indosnumber} onChange={(e) => setIndosnumber(e.target.value)}
+                                            required
+                                        />
                                     </div>
 
                                     <div className="col-md-3">
-                                    <p className='text-start' style={{marginBottom:'0'}}>Place</p>
-                                    <input
-                                    type="text"
-                                    id="indos-place"
-                                    name="indos-place"
-                                    placeholder="place of issue"
-                                    value={indosissueplace} onChange={(e)=>setIndosissueplace(e.target.value)}
-                                    required
-                                    />
+                                        <p className='text-start' style={{ marginBottom: '0' }}>Place</p>
+                                        <input
+                                            type="text"
+                                            id="indos-place"
+                                            name="indos-place"
+                                            placeholder="place of issue"
+                                            value={indosissueplace} onChange={(e) => setIndosissueplace(e.target.value)}
+                                            required
+                                        />
                                     </div>
 
                                     <div className="col-md-3">
-                                    <p className='text-start' style={{marginBottom:'0'}}>Issue date</p>
-                                    <input
-                                    type="date"
-                                    id="indos-issue-date"
-                                    name="indos-issue-date"
-                                    placeholder="issue date"
-                                    value={indosissuedate} onChange={(e)=>setIndosissuedate(e.target.value)}
-                                    required
-                                    />
+                                        <p className='text-start' style={{ marginBottom: '0' }}>Issue date</p>
+                                        <input
+                                            type="date"
+                                            id="indos-issue-date"
+                                            name="indos-issue-date"
+                                            placeholder="issue date"
+                                            value={indosissuedate} onChange={(e) => setIndosissuedate(e.target.value)}
+                                            required
+                                        />
                                     </div>
 
                                     <div className="col-md-3">
-                                    <p className='text-start' style={{marginBottom:'0'}}>Expire date</p>
-                                    <input
-                                    type="date"
-                                    id="indos-expire-date"
-                                    name="indos-expire-date"
-                                    placeholder="expire date"
-                                    value={indosexpiredate} onChange={(e)=>setIndosexpiredate(e.target.value)}
-                                    required
-                                    />
+                                        <p className='text-start' style={{ marginBottom: '0' }}>Expire date</p>
+                                        <input
+                                            type="date"
+                                            id="indos-expire-date"
+                                            name="indos-expire-date"
+                                            placeholder="expire date"
+                                            value={indosexpiredate} onChange={(e) => setIndosexpiredate(e.target.value)}
+                                            required
+                                        />
                                     </div>
 
                                 </div>
@@ -670,11 +812,11 @@ export const Passport = () => {
                         </div>
 
                         {/* // buttons */}
-                        
+
                         <div className="form-group text-start">
                             <label htmlFor="verification">
                                 Verification<span className="required">*</span> <br /><br />
-                            <input type="checkbox" /> I'm not a robot
+                                <input type="checkbox" required /> I'm not a robot
                             </label>
                         </div>
 
@@ -695,7 +837,7 @@ export const Passport = () => {
                                     </div>
                                 </div>
                             </div>
-                           
+
                         </div>
                     </form>
                 </div>
