@@ -5,6 +5,7 @@ import jsPDF from 'jspdf'; // Import jsPDF
 import logo from "./assets/logo_for_form.png";
 import logo1 from "./assets/Euro+BAR.png";
 import html2pdf from 'html2pdf.js';
+import axios from "axios";
 
 export const Passport = () => {
     const navigate = useNavigate();
@@ -29,7 +30,6 @@ export const Passport = () => {
     const [indosissuedate, setIndosissuedate] = useState('');
     const [indosexpiredate, setIndosexpiredate] = useState('');
 
-    // form 1 data
     const [fname, setFname] = useState('');
     const [lname, setLname] = useState('');
     const [email, setEmail] = useState('');
@@ -40,13 +40,13 @@ export const Passport = () => {
     const [bankname, setBankname] = useState('');
     const [bankan, setBankan] = useState('');
     const [airport, setAirport] = useState('');
-
-    // form 2 data
+    const [permanentaddress, setPermanentaddress] = useState('');
+    const [presentaddress, setPresentaddress] = useState('');
 
     const [wfname, setWfname] = useState('');
     const [wlname, setWlname] = useState('');
     const [wemail, setWemail] = useState('');
-    const [wdob, setWdob] = useState(''); 
+    const [wdob, setWdob] = useState('');
     const [cname1, setCname1] = useState('');
     const [cname2, setCname2] = useState('');
     const [cname3, setCname3] = useState('');
@@ -54,12 +54,81 @@ export const Passport = () => {
     const [cdob2, setCdob2] = useState('');
     const [cdob3, setCdob3] = useState('');
 
+    // You can add permanentaddress and presentaddress here if needed:
+    // const [permanentaddress, setPermanentaddress] = useState('');
+    // const [presentaddress, setPresentaddress] = useState('');
+
     const win = window.sessionStorage;
+    const tformData = {
+        // form-3 data
+        passnumber,
+        passissueplace,
+        passissuedate,
+        passexpiredate,
+        visanumber,
+        visaissueplace,
+        visaissuedate,
+        visaexpiredate,
+        ecnrnumber,
+        ecnrissueplace,
+        ecnrissuedate,
+        ecnrexpiredate,
+        yellowfevernumber,
+        yellowfeverissueplace,
+        yellowfeverissuedate,
+        yellowfeverexpiredate,
+        indosnumber,
+        indosissueplace,
+        indosissuedate,
+        indosexpiredate,
+        // form-1 data
+        fname,
+        lname,
+        email,
+        phone,
+        phone2,
+        dob,
+        place,
+        bankname,
+        bankan,
+        airport,
+        permanentaddress,
+        presentaddress,
+        // form-2 data
+        wfname,
+        wlname,
+        wemail,
+        wdob,
+        cname1,
+        cdob1,
+        cname2,
+        cdob2,
+        cname3,
+        cdob3,
 
+    }
 
-
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
+        // console.log(passnumber,indosexpiredate)
         e.preventDefault();
+        // if (tformData) {
+        //     win.setItem("formData2", JSON.stringify(tformData));
+        //     try {
+        //         const response = await axios.post(
+        //             "http://localhost:5000/api/saveFormData",
+        //             tformData
+        //         );
+        //         console.log(tformData)
+        //         alert(response.data.message);
+                navigate("/continuous"); // Navigate to the next page if submission is successful
+        //     } catch (error) {
+        //         alert("Error saving data");
+        //         console.error(error);
+        //     }
+
+        // } else {
+        //     alert("Please fill all the fields");
+        // }
 
         // Save data in sessionStorage
         win.setItem('passnumber', passnumber);
@@ -83,7 +152,6 @@ export const Passport = () => {
         win.setItem('indosissuedate', indosissuedate);
         win.setItem('indosexpiredate', indosexpiredate);
 
-        navigate('');  // This will navigate to the 'form_2' page when clicked
     };
 
     // Load data from sessionStorage when component mounts
@@ -121,7 +189,7 @@ export const Passport = () => {
 
         if (win.getItem('ecnrissueplace'))
             setEcnrissueplace(win.getItem('ecnrissueplace'));
-        
+
         if (win.getItem('ecnrexpiredate'))
             setEcnrexpiredate(win.getItem('ecnrexpiredate'));
 
@@ -148,7 +216,7 @@ export const Passport = () => {
 
         if (win.getItem('indosexpiredate'))
             setIndosexpiredate(win.getItem('indosexpiredate'));
-// Form 1------------------------------------
+        // Form 1------------------------------------
         if (win.getItem('fname'))
             setFname(win.getItem('fname'));
 
@@ -178,7 +246,13 @@ export const Passport = () => {
 
         if (win.getItem('airport'))
             setAirport(win.getItem('airport'));
-//form 2------------------------------
+
+        if (win.getItem('permanentaddress'))
+            setPermanentaddress(win.getItem('permanentaddress'));
+
+        if (win.getItem('presentaddress'))
+            setPresentaddress(win.getItem('presentaddress'));
+        //form 2------------------------------
         if (win.getItem('wfname')) setWfname(win.getItem('wfname'));
         if (win.getItem('wlname')) setWlname(win.getItem('wlname'));
         if (win.getItem('wemail')) setWemail(win.getItem('wemail'));
@@ -188,28 +262,11 @@ export const Passport = () => {
         if (win.getItem('cname3')) setCname3(win.getItem('cname3'));
         if (win.getItem('cdob1')) setCdob1(win.getItem('cdob1'));
         if (win.getItem('cdob2')) setCdob2(win.getItem('cdob2'));
-        if (win.getItem('cdob3')) setCdob3(win.getItem('cdob3'));   
+        if (win.getItem('cdob3')) setCdob3(win.getItem('cdob3'));
 
     }, [])  // Run once when component mounts
 
-    //  Function to generate PDF
-    //  const generatePDF = () => {
-    //     const doc = new jsPDF();
 
-    //     doc.text("Registration Details", 10, 10);
-    //     doc.text(`Name: ${fname} ${lname}`, 10, 20);
-    //     doc.text(`Email: ${email}`, 10, 30);
-    //     doc.text(`Phone 1 Name: ${phone}`, 10, 50);
-    //     doc.text(`Phone 2: ${phone2}`, 10, 60);
-    //     doc.text(`Date Of Birth: ${dob}`, 10, 40);
-    //     doc.text(`Birth Place: ${place}`, 10, 70);
-    //     doc.text(`Bank Name and Branch: ${bankname}`, 10, 80);
-    //     doc.text(`Bank A/c No: ${bankan}`, 10, 90);
-    //     doc.text(`Nearest Airport: ${bankname}`, 10, 100);
-
-    //     Save the PDF
-    //     doc.save('form_data.pdf');
-    // };
 
     // Function to generate PDF
     const getContentInPDF = () => {
@@ -831,7 +888,10 @@ export const Passport = () => {
                                 </div>
                                 <div className="col-md-6">
                                     <div className="form-group">
-                                        <button type="submit" className="btn-submit" onClick={getContentInPDF}>
+                                        {/* <button type="submit" className="btn-submit" onClick={getContentInPDF}>
+                                            Next
+                                        </button> */}
+                                        <button type="submit" className="btn-submit">
                                             Next
                                         </button>
                                     </div>
